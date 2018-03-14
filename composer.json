@@ -1,0 +1,16 @@
+{
+    "name": "vendor/asciishapes",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Aleksandr Efimov",
+            "email": "sanches.com@mail.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "AsciiShapes\\": "src/"
+        }
+    }
+}
