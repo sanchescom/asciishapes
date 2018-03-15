@@ -9,7 +9,7 @@ class Application
 
 	public function __construct()
 	{
-		$this->config  = \Noodlehaus\Config::load('config.json');
+		$this->config  = \Noodlehaus\Config::load('config.php');
 		$this->request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 	}
 

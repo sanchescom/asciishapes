@@ -8,6 +8,9 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
+    environment:
+        XDEBUG_CONFIG: remote_host=192.168.0.25
+        PHP_XDEBUG_ENABLED: 1
 
   web:
     build:
