@@ -7,10 +7,14 @@
             "email": "sanches.com@mail.ru"
         }
     ],
-    "require": {},
+    "require": {
+        "cheprasov/php-cli-args": "^2.1",
+        "symfony/http-foundation": "^3.4",
+        "hassankhan/config": "^1.0"
+    },
     "autoload": {
         "psr-4": {
-            "AsciiShapes\\": "src/"
+            "AsciiShapes\\": "app/"
         }
     }
 }

@@ -1,0 +1,30 @@
+version: '2'
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: app.docker
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+
+  web:
+    build:
+      context: ./
+      dockerfile: web.docker
+    working_dir: /var/www
+    volumes_from:
+      - app
+    links:
+      - app
+    ports:
+      - 8091:80
+
+  composer:
+    restart: 'no'
+    image: composer
+    command: install
+    volumes_from:
+      - app
+    working_dir: /var/www
