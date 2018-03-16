@@ -9,8 +9,7 @@ services:
     volumes:
       - ./:/var/www
     environment:
-        XDEBUG_CONFIG: remote_host=192.168.0.25
-        PHP_XDEBUG_ENABLED: 1
+        PHP_IDE_CONFIG: "serverName=asciishapes.d"
 
   web:
     build:

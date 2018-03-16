@@ -2,24 +2,15 @@
 
 require_once ("vendor/autoload.php");
 
-class Application
-{
-	private $config;
-	private $request;
-
-	public function __construct()
-	{
-		$this->config  = \Noodlehaus\Config::load('config.php');
-		$this->request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
-	}
-
-
-	public function run()
-	{
-
-	}
-}
-
+$builder = new DI\ContainerBuilder();
+$builder->addDefinitions([
+	\AsciiShapes\Handler\HandlerSapi::class => DI\factory([\AsciiShapes\Handler\HandlerFactory::class, 'create']),
+	\Noodlehaus\Config::class => DI\object(\Noodlehaus\Config::class)->constructor('config.php'),
+	\Symfony\Component\HttpFoundation\Request::class => DI\factory([\Symfony\Component\HttpFoundation\Request::class, 'createFromGlobals'])
+]);
+$container = $builder->build()->call(function (\AsciiShapes\Handler\HandlerSapi $handler_sapi) {
+	$handler_sapi->call();
+});
 
 
 

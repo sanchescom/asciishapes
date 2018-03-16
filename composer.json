@@ -10,7 +10,8 @@
     "require": {
         "cheprasov/php-cli-args": "^2.1",
         "symfony/http-foundation": "^3.4",
-        "hassankhan/config": "^1.0"
+        "hassankhan/config": "^1.0",
+        "php-di/php-di": "^5.4"
     },
     "autoload": {
         "psr-4": {
