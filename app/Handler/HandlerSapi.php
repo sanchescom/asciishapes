@@ -2,7 +2,7 @@
 
 namespace AsciiShapes\Handler;
 
-abstract class HandlerSapi implements HandlerInterface
+abstract class HandlerSapi
 {
 	abstract public function call();
 }

@@ -2,10 +2,18 @@
 
 namespace AsciiShapes\Handler;
 
-class Cli extends HandlerSapi implements HandlerInterface
+use CliArgs\CliArgs;
+
+class Cli extends HandlerSapi
 {
 	public function call()
 	{
-		echo 2;
+		echo $this->building();
+	}
+
+
+	public function building(CliArgs $cli_args)
+	{
+
 	}
 }

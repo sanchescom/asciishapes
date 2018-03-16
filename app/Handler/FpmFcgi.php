@@ -2,7 +2,7 @@
 
 namespace AsciiShapes\Handler;
 
-class FpmFcgi extends HandlerSapi implements HandlerInterface
+class FpmFcgi extends HandlerSapi
 {
 	public function call()
 	{
