@@ -17,10 +17,6 @@ return [
         'amount' => [
             'alias'   => 'a',
             'help'    => 'Amount of the shapes',
-        ],
-        'type' => [
-            'alias'   => 't',
-            'help'    => 'Shape\'s type',
         ]
 	],
 ];

@@ -2,6 +2,7 @@
 
 namespace AsciiShapes\Handler;
 
+use AsciiShapes\Shapes\Shape;
 use AsciiShapes\Shapes\ShapesProvider;
 use Noodlehaus\Config;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,9 +49,20 @@ abstract class HandlerSapi
     }
 
 
-    protected function validateSize()
+    protected function display($size, $amount)
     {
-        $this->request->get('size');
+        $shapes = ShapesProvider::boot();
+
+        foreach ($shapes as $shape)
+        {
+            /**
+             * @var $instance Shape
+             */
+            $instance = (new $shape);
+            $instance->build($size, $amount);
+
+            echo PHP_EOL;
+        }
     }
 
 

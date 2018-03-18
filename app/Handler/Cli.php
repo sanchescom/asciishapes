@@ -2,7 +2,6 @@
 
 namespace AsciiShapes\Handler;
 
-use AsciiShapes\Shapes\ShapesProvider;
 use CliArgs\CliArgs;
 
 /**
@@ -24,7 +23,7 @@ class Cli extends HandlerSapi
         $size = $cli_args->getArg('size') ?: $this->getDefaultSize();
         $amount = $cli_args->getArg('amount') ?: $this->getDefaultAmount();
 
-        ShapesProvider::display($size, $amount);
+        $this->display($size, $amount);
     }
 
 

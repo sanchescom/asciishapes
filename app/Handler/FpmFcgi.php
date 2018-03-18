@@ -2,8 +2,6 @@
 
 namespace AsciiShapes\Handler;
 
-use AsciiShapes\Shapes\ShapesProvider;
-
 /**
  * Class FpmFcgi
  *
@@ -20,6 +18,14 @@ class FpmFcgi extends HandlerSapi
         $size   = $request->get('size') ?: $this->getDefaultSize();
         $amount = $request->get('amount') ?: $this->getDefaultAmount();
 
-        ShapesProvider::display($size, $amount);
+        $this->display($size, $amount);
 	}
+
+
+    public  function display($size, $amount)
+    {
+        echo "<pre>";
+        parent::display($size, $amount);
+        echo "</pre>";
+    }
 }
