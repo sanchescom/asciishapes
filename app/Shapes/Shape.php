@@ -4,6 +4,11 @@ namespace AsciiShapes\Shapes;
 
 abstract class Shape
 {
+    abstract public function small();
+    abstract public function medium();
+    abstract public function large();
+
+
     public function build($size, $amount)
     {
         if (method_exists($this, $size))
@@ -18,7 +23,4 @@ abstract class Shape
             }
         }
     }
-    abstract public function small();
-    abstract public function medium();
-    abstract public function large();
 }

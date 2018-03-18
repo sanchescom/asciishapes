@@ -20,7 +20,7 @@ class Cli extends HandlerSapi
     {
         $cli_args = $this->getCliArgs();
 
-        $size = $cli_args->getArg('size') ?: $this->getDefaultSize();
+        $size   = $cli_args->getArg('size') ?: $this->getDefaultSize();
         $amount = $cli_args->getArg('amount') ?: $this->getDefaultAmount();
 
         $this->display($size, $amount);

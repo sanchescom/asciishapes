@@ -30,7 +30,7 @@ abstract class HandlerSapi
     }
 
 
-    public function getConfig()
+    public function getConfig(): Config
     {
         return $this->config;
     }
@@ -43,7 +43,7 @@ abstract class HandlerSapi
         return $this;
     }
 
-    public function getRequest()
+    public function getRequest(): Request
     {
         return $this->request;
     }
@@ -66,13 +66,13 @@ abstract class HandlerSapi
     }
 
 
-    protected function getDefaultSize()
+    protected function getDefaultSize(): string
     {
         return $this->config->get('default.size')[array_rand($this->config->get('default.size'))];
     }
 
 
-    protected function getDefaultAmount()
+    protected function getDefaultAmount(): int
     {
         return $this->config->get('default.amount');
     }

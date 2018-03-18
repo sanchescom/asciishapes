@@ -4,7 +4,7 @@ namespace AsciiShapes\Shapes;
 
 class Diamond extends Shape
 {
-    public function small()
+    public function small(): array
     {
         return [
             "     +     ",
@@ -15,7 +15,7 @@ class Diamond extends Shape
         ];
     }
 
-    public function medium()
+    public function medium(): array
     {
         return [
             "       +       ",
@@ -28,7 +28,7 @@ class Diamond extends Shape
         ];
     }
 
-    public function large()
+    public function large(): array
     {
         return [
             "          +          ",

@@ -4,7 +4,7 @@ namespace AsciiShapes\Shapes;
 
 class ShapesProvider
 {
-    public static function boot()
+    public static function boot(): array
     {
         return [
             Diamond::class,
