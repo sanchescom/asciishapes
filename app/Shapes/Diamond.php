@@ -4,8 +4,44 @@ namespace AsciiShapes\Shapes;
 
 class Diamond extends Shape
 {
-    public function build($size, $amount)
+    public function small()
     {
-        // TODO: Implement build() method.
+        return [
+            "     +     ",
+            "     X     ",
+            "  +XXXXX+  ",
+            "     X     ",
+            "     +     ",
+        ];
+    }
+
+    public function medium()
+    {
+        return [
+            "       +       ",
+            "       X       ",
+            "     XXXXX     ",
+            "  +XXXXXXXXX+  ",
+            "     XXXXX     ",
+            "       X       ",
+            "       +       ",
+        ];
+    }
+
+    public function large()
+    {
+        return [
+            "          +          ",
+            "          X          ",
+            "         XXX         ",
+            "       XXXXXXX       ",
+            "     XXXXXXXXXXX     ",
+            "  +XXXXXXXXXXXXXXX+  ",
+            "     XXXXXXXXXXX     ",
+            "       XXXXXXX       ",
+            "         XXX         ",
+            "          X          ",
+            "          +          ",
+        ];
     }
 }

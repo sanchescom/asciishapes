@@ -2,7 +2,11 @@
 
 return [
     'default' => [
-        'size'   => [3, 5, 11],
+        'size'   => [
+            'small',
+            'medium',
+            'large',
+        ],
         'amount' => 3,
     ],
 	'cli' => [

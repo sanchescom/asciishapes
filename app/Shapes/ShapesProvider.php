@@ -10,8 +10,8 @@ class ShapesProvider
     public function boot()
     {
         return [
-            Triangle::class,
             Diamond::class,
+            Triangle::class,
         ];
     }
 
