@@ -1,6 +1,6 @@
 ## Output shapes in browser or console with sample settings
 
-![](https://github.com/sanchescom/asciishapes/shapes.png)
+![](https://github.com/sanchescom/asciishapes/blob/master/shapes.png)
 
 Available sizes;
 
