@@ -1,4 +1,4 @@
-## Output shapes in browser or console with sample settings
+## Output shapes in browser or console with simple settings
 
 ![](https://github.com/sanchescom/asciishapes/blob/master/shapes.png)
 
