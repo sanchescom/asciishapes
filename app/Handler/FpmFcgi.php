@@ -19,5 +19,7 @@ class FpmFcgi extends HandlerSapi
 
         $size   = $request->get('size') ?: $this->getDefaultSize();
         $amount = $request->get('amount') ?: $this->getDefaultAmount();
+
+        ShapesProvider::display($size, $amount);
 	}
 }

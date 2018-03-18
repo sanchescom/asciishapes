@@ -2,6 +2,7 @@
 
 namespace AsciiShapes\Handler;
 
+use AsciiShapes\Shapes\ShapesProvider;
 use Noodlehaus\Config;
 use Symfony\Component\HttpFoundation\Request;
 
