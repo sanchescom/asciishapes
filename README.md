@@ -12,7 +12,7 @@ Available sizes;
 Clone the repo
 ```sh
 git clone https://github.com/sanchescom/asciishapes.git
-cd test-form
+cd asciishapes
 ```
 Add host in hosts file
 ```sh
