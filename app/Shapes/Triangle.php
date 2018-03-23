@@ -6,42 +6,49 @@ class Triangle extends Shape
 {
     public function small(): array
     {
-        return [
-            "     +     ",
-            "     X     ",
-            "    XXX    ",
-            "   XXXXX   ",
-            "  XXXXXXX  ",
-        ];
+        return $this->building(5, 2);
     }
 
     public function medium(): array
     {
-        return [
-            "       +       ",
-            "       X       ",
-            "      XXX      ",
-            "     XXXXX     ",
-            "    XXXXXXX    ",
-            "   XXXXXXXXX   ",
-            "  XXXXXXXXXXX  ",
-        ];
+        return $this->building(7, 4);
     }
 
     public function large(): array
     {
-        return [
-            "          +          ",
-            "          X          ",
-            "         XXX         ",
-            "        XXXXX        ",
-            "       XXXXXXX       ",
-            "      XXXXXXXXX      ",
-            "     XXXXXXXXXXX     ",
-            "    XXXXXXXXXXXXX    ",
-            "   XXXXXXXXXXXXXXX   ",
-            "  XXXXXXXXXXXXXXXXX  ",
-            " XXXXXXXXXXXXXXXXXXX ",
-        ];
+        return $this->building(11, 8);
+    }
+
+
+    public function building($lines, $step)
+    {
+        $stack  = [];
+        $length = $lines + $step;
+
+        $prefix  = "  ";
+        $postfix = "  ";
+
+        for ($i=1; $i<=$lines; $i++)
+        {
+            $string  = $prefix;
+
+            for ($j=0; $j<$length; $j++)
+            {
+                $string .= ($i == $lines ? "+" : "X");
+            }
+
+            $string .= $postfix;
+
+            if ($i != ($lines - 1))
+            {
+                $length -= 2;
+                $prefix .= " ";
+                $postfix.= " ";
+            }
+
+            $stack[] = $string;
+        }
+
+        return array_reverse($stack);
     }
 }
