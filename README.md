@@ -1,6 +1,6 @@
-## Output shapes in browser or console with sample settings
+## Output shapes in browser or console with simple settings
 
-![](https://github.com/sanchescom/asciishapes/shapes.png)
+![](https://github.com/sanchescom/asciishapes/blob/master/shapes.png)
 
 Available sizes;
 
@@ -12,7 +12,7 @@ Available sizes;
 Clone the repo
 ```sh
 git clone https://github.com/sanchescom/asciishapes.git
-cd test-form
+cd asciishapes
 ```
 Add host in hosts file
 ```sh
