@@ -7,7 +7,7 @@ abstract class Shape
     abstract public function small();
     abstract public function medium();
     abstract public function large();
-
+    abstract public function construct($lines, $step);
 
     public function build($size, $amount)
     {

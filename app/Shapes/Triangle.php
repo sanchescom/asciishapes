@@ -6,21 +6,23 @@ class Triangle extends Shape
 {
     public function small(): array
     {
-        return $this->building(5, 2);
+        return $this->construct(5, 2);
     }
+
 
     public function medium(): array
     {
-        return $this->building(7, 4);
+        return $this->construct(7, 4);
     }
+
 
     public function large(): array
     {
-        return $this->building(11, 8);
+        return $this->construct(11, 8);
     }
 
 
-    public function building($lines, $step)
+    public function construct($lines, $step)
     {
         $stack  = [];
         $length = $lines + $step;

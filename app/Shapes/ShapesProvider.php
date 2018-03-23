@@ -8,7 +8,7 @@ class ShapesProvider
     {
         return [
             Diamond::class,
-//            Triangle::class,
+            Triangle::class,
         ];
     }
 }
