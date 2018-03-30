@@ -13,30 +13,30 @@ use CliArgs\CliArgs;
  */
 class Cli extends HandlerSapi
 {
-    protected $cli_args;
+	protected $cli_args;
 
 
 	public function apply()
-    {
-        $cli_args = $this->getCliArgs();
+	{
+		$cli_args = $this->getCliArgs();
 
-        $size   = $cli_args->getArg('size') ?: $this->getDefaultSize();
-        $amount = $cli_args->getArg('amount') ?: $this->getDefaultAmount();
+		$size   = $cli_args->getArg('size') ?: $this->getDefaultSize();
+		$amount = $cli_args->getArg('amount') ?: $this->getDefaultAmount();
 
-        $this->display($size, $amount);
-    }
+		$this->display($size, $amount);
+	}
 
 
 	public function setCliArgs(CliArgs $cli_args)
-    {
-        $this->cli_args = $cli_args;
+	{
+		$this->cli_args = $cli_args;
 
-        return $this;
-    }
+		return $this;
+	}
 
 
-    public function getCliArgs()
-    {
-        return $this->cli_args;
-    }
+	public function getCliArgs()
+	{
+		return $this->cli_args;
+	}
 }

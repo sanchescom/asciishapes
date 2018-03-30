@@ -4,53 +4,61 @@ namespace AsciiShapes\Shapes;
 
 class Triangle extends Shape
 {
-    public function small(): array
-    {
-        return $this->construct(5, 2);
-    }
+	protected static $start_step  = 2;
+
+	protected static $small_size  = 5;
+	protected static $medium_size = 7;
+	protected static $large_size  = 11;
 
 
-    public function medium(): array
-    {
-        return $this->construct(7, 4);
-    }
+	protected static function getStep($name): int
+	{
+		$previous_size = self::getPreviousSize($name);
+
+		if ($previous_size)
+		{
+			$result = self::getSize($name) - $previous_size;
+
+			if ($result)
+			{
+				return $result * 2;
+			}
+		}
+
+		return static::$start_step;
+	}
 
 
-    public function large(): array
-    {
-        return $this->construct(11, 8);
-    }
+	public function build($size): void
+	{
+		$stack  = [];
+		$lines  = self::getSize($size);
+		$length = $lines + self::getStep($size);
 
+		$prefix  = "  ";
+		$postfix = "  ";
 
-    public function construct($lines, $step)
-    {
-        $stack  = [];
-        $length = $lines + $step;
+		for ($i = 1; $i <= $lines; $i++)
+		{
+			$string = $prefix;
 
-        $prefix  = "  ";
-        $postfix = "  ";
+			for ($j = 0; $j < $length; $j++)
+			{
+				$string .= ($i == $lines ? "+" : "X");
+			}
 
-        for ($i=1; $i<=$lines; $i++)
-        {
-            $string  = $prefix;
+			$string .= $postfix;
 
-            for ($j=0; $j<$length; $j++)
-            {
-                $string .= ($i == $lines ? "+" : "X");
-            }
+			if ($i != ($lines - 1))
+			{
+				$length -= 2;
+				$prefix .= " ";
+				$postfix .= " ";
+			}
 
-            $string .= $postfix;
+			$stack[] = $string;
+		}
 
-            if ($i != ($lines - 1))
-            {
-                $length -= 2;
-                $prefix .= " ";
-                $postfix.= " ";
-            }
-
-            $stack[] = $string;
-        }
-
-        return array_reverse($stack);
-    }
+		$this->shape_parts = array_reverse($stack);
+	}
 }
