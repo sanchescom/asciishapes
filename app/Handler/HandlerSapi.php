@@ -17,79 +17,76 @@ use Symfony\Component\HttpFoundation\Request;
  */
 abstract class HandlerSapi
 {
-	const CONTENT_TYPE_HTML = 'html';
+    const CONTENT_TYPE_HTML = 'html';
 
-	protected $config;
-	protected $request;
-
-
-	abstract public function apply();
+    protected $config;
+    protected $request;
 
 
-	public function setConfig(Config $config): HandlerSapi
-	{
-		$this->config = $config;
-
-		return $this;
-	}
+    abstract public function apply();
 
 
-	public function getConfig(): Config
-	{
-		return $this->config;
-	}
+    public function setConfig(Config $config): HandlerSapi
+    {
+        $this->config = $config;
+
+        return $this;
+    }
 
 
-	public function setRequest(Request $request): HandlerSapi
-	{
-		$this->request = $request;
-
-		return $this;
-	}
+    public function getConfig(): Config
+    {
+        return $this->config;
+    }
 
 
-	public function getRequest() : Request
-	{
-		return $this->request;
-	}
+    public function setRequest(Request $request): HandlerSapi
+    {
+        $this->request = $request;
+
+        return $this;
+    }
 
 
-	protected function display($size, $amount): void
-	{
-		$shapes = ShapesProvider::boot();
-
-		if ($this->request->getContentType() == self::CONTENT_TYPE_HTML)
-		{
-			echo '<pre>';
-		}
-
-		foreach ($shapes as $shape)
-		{
-			/**
-			 * @var $instance Shape
-			 */
-			$instance = (new $shape());
-			$instance->build($size);
-			$instance->draw($amount);
-
-			echo PHP_EOL;
-		}
-
-		if ($this->request->getContentType() == self::CONTENT_TYPE_HTML)
-		{
-			echo '</pre>';
-		}
-	}
+    public function getRequest() : Request
+    {
+        return $this->request;
+    }
 
 
-	protected function getDefaultSize(): string
-	{
-		return $this->config->get('default.size')[array_rand($this->config->get('default.size'))];
-	}
+    protected function display($size, $amount): void
+    {
+        $shapes = ShapesProvider::boot();
+
+        if ($this->request->getContentType() == self::CONTENT_TYPE_HTML) {
+            echo '<pre>';
+        }
+
+        foreach ($shapes as $shape) {
+            /**
+             * @var $instance Shape
+             */
+            $instance = (new $shape());
+            $instance->build($size);
+            $instance->draw($amount);
+
+            echo PHP_EOL;
+        }
+
+        if ($this->request->getContentType() == self::CONTENT_TYPE_HTML) {
+            echo '</pre>';
+        }
+    }
 
 
-	protected function getDefaultAmount(): int
-	{
-		return $this->config->get('default.amount');
-	}
+    protected function getDefaultSize(): string
+    {
+        return $this->config->get('default.size')[array_rand($this->config->get('default.size'))];
+    }
+
+
+    protected function getDefaultAmount(): int
+    {
+        return $this->config->get('default.amount');
+    }
 }
