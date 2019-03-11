@@ -23,7 +23,7 @@
         "squizlabs/php_codesniffer": "^3.4"
     },
     "scripts": {
-        "check-mess": "./vendor/bin/phpmd ./app text codesize,unusedcode,naming,phpmd.xml",
+        "check-mess": "./vendor/bin/phpmd ./app text codesize,unusedcode,naming",
         "check-style": "./vendor/bin/phpcs -p --standard=PSR2 ./app",
         "fix-style": "./vendor/bin/phpcbf --standard=PSR2 ./app"
     }

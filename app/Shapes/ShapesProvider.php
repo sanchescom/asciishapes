@@ -2,13 +2,31 @@
 
 namespace AsciiShapes\Shapes;
 
+/**
+ * Class ShapesProvider
+ * @package AsciiShapes\Shapes
+ */
 class ShapesProvider
 {
-    public static function boot() : array
+    /**
+     * Shapes handlers
+     *
+     * @var Shape[]
+     */
+    protected static $shapes = [
+        Diamond::class,
+        Triangle::class,
+    ];
+
+    /**
+     * @param $size
+     * @param $amount
+     * @return \Generator|Shape[]
+     */
+    public static function boot($size, $amount)
     {
-        return [
-            Diamond::class,
-            Triangle::class,
-        ];
+        foreach (self::$shapes as $shape) {
+            yield $shape::create($size, $amount)->build();
+        }
     }
 }

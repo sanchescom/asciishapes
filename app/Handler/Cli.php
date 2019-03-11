@@ -6,37 +6,50 @@ use CliArgs\CliArgs;
 
 /**
  * Class Cli
- *
- * @property CliArgs $cli_args
- *
+ * @inheritdoc
+ * @method static Cli create()
  * @package AsciiShapes\Handler
  */
-class Cli extends HandlerSapi
+class Cli extends ApplicationHandler
 {
-    protected $cli_args;
+    /**
+     * @var CliArgs
+     */
+    protected $arguments;
 
 
-    public function apply()
+    /**
+     * Init passed setting and calling viewing function
+     */
+    public function init(): void
     {
-        $cli_args = $this->getCliArgs();
+        $size = $this
+            ->getArguments()
+            ->getArg(self::SIZE_ARGUMENT) ?: $this->getDefaultSize();
 
-        $size   = $cli_args->getArg('size') ?: $this->getDefaultSize();
-        $amount = $cli_args->getArg('amount') ?: $this->getDefaultAmount();
+        $amount = $this
+            ->getArguments()
+            ->getArg(self::AMOUNT_ARGUMENT) ?: $this->getDefaultAmount();
 
-        $this->display($size, $amount);
+        $this->view($size, $amount);
     }
 
-
-    public function setCliArgs(CliArgs $cli_args)
+    /**
+     * @param CliArgs $arguments
+     * @return $this
+     */
+    public function setArguments(CliArgs $arguments)
     {
-        $this->cli_args = $cli_args;
+        $this->arguments = $arguments;
 
         return $this;
     }
 
-
-    public function getCliArgs()
+    /**
+     * @return CliArgs
+     */
+    public function getArguments()
     {
-        return $this->cli_args;
+        return $this->arguments;
     }
 }

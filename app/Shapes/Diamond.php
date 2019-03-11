@@ -2,35 +2,59 @@
 
 namespace AsciiShapes\Shapes;
 
+/**
+ * Class Diamond
+ * @inheritdoc
+ * @package AsciiShapes\Shapes
+ */
 class Diamond extends Shape
 {
-    protected static $start_step  = 0;
+    /**
+     * @var int
+     */
+    const START_STEP = 0;
 
-    protected static $small_size  = 5;
-    protected static $medium_size = 7;
-    protected static $large_size  = 11;
+    /**
+     * @var int
+     */
+    const SMALL_SIZE = 5;
+
+    /**
+     * @var int
+     */
+    const MEDIUM_SIZE = 7;
+
+    /**
+     * @var int
+     */
+    const LARGE_SIZE = 11;
 
 
-    protected static function getStep($name): int
+    /**
+     * @return int
+     */
+    protected function getStep(): int
     {
-        $previous_size = self::getPreviousSize($name);
+        $previous_size = $this->getPreviousSize();
 
         if ($previous_size) {
-            return self::getSize($name) - $previous_size;
+            return $this->getSize() - $previous_size;
         }
 
-        return static::$start_step;
+        return $this->getStartStep();
     }
 
-
-    public function build($size): void
+    /**
+     * @return Shape
+     */
+    public function build()
     {
-        $stack  = [];
-        $lines  = self::getSize($size);
-        $length = $lines + self::getStep($size);
+        $stack = [];
+        $lines = $this->getSize();
+        $length = $lines + $this->getStep();
         $middle = round($lines / 2);
 
-        $prefix  = "  ";
+        $prefix = "  ";
         $postfix = "  ";
 
         for ($i = 1; $i <= $middle; $i++) {
@@ -72,23 +96,57 @@ class Diamond extends Shape
                 if ($length < 0) {
                     $length = 1;
 
-                    $prefix  .= " ";
+                    $prefix .= " ";
                     $postfix .= " ";
                 } else {
-                    $prefix  .= "  ";
+                    $prefix .= "  ";
                     $postfix .= "  ";
                 }
             }
 
             $stack[] = $string;
         }
-        $middle_row = array_shift($stack);
+        $middleRow = array_shift($stack);
 
-        $this->shape_parts = array_merge(
+        $this->shapeParts = array_merge(
             array_reverse($stack),
             array_merge([
-                $middle_row,
+                $middleRow,
             ], $stack)
         );
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getStartStep()
+    {
+        return self::START_STEP;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getSmallSize()
+    {
+        return self::SMALL_SIZE;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getMediumSize()
+    {
+        return self::MEDIUM_SIZE;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getLargeSize()
+    {
+        return self::LARGE_SIZE;
     }
 }

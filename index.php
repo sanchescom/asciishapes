@@ -2,14 +2,14 @@
 
 require_once("vendor/autoload.php");
 
-use AsciiShapes\Handler\HandlerSapi;
+use AsciiShapes\Handler\ApplicationHandler;
 use AsciiShapes\Handler\HandlerFactory;
 use DI\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Noodlehaus\Config;
 
 $definitions = [
-    HandlerSapi::class => DI\factory([
+    ApplicationHandler::class => DI\factory([
         HandlerFactory::class,
         'create'
     ]),
@@ -22,6 +22,10 @@ $definitions = [
 
 $builder = new ContainerBuilder();
 $builder->addDefinitions($definitions);
-$builder->build()->call(function (HandlerSapi $handler_sapi) {
-    $handler_sapi->apply();
+$builder->build()->call(function (ApplicationHandler $application) {
+    try {
+        $application->init();
+    } catch (\Exception $exception) {
+
+    }
 });

@@ -4,34 +4,53 @@ namespace AsciiShapes\Shapes;
 
 class Triangle extends Shape
 {
-    protected static $start_step  = 2;
+    /**
+     * @var int
+     */
+    const START_STEP = 2;
 
-    protected static $small_size  = 5;
-    protected static $medium_size = 7;
-    protected static $large_size  = 11;
+    /**
+     * @var int
+     */
+    const SMALL_SIZE = 5;
+
+    /**
+     * @var int
+     */
+    const MEDIUM_SIZE = 7;
+
+    /**
+     * @var int
+     */
+    const LARGE_SIZE = 11;
 
 
-    protected static function getStep($name): int
+    /**
+     * @return int
+     */
+    protected function getStep(): int
     {
-        $previous_size = self::getPreviousSize($name);
+        $previous_size = $this->getPreviousSize();
 
         if ($previous_size) {
-            $result = self::getSize($name) - $previous_size;
+            $result = $this->getSize() - $previous_size;
 
             if ($result) {
                 return $result * 2;
             }
         }
 
-        return static::$start_step;
+        return $this->getStartStep();
     }
 
-
-    public function build($size): void
+    /**
+     * @return Shape
+     */
+    public function build()
     {
         $stack  = [];
-        $lines  = self::getSize($size);
-        $length = $lines + self::getStep($size);
+        $lines  = $this->getSize();
+        $length = $lines + $this->getStep();
 
         $prefix  = "  ";
         $postfix = "  ";
@@ -54,6 +73,40 @@ class Triangle extends Shape
             $stack[] = $string;
         }
 
-        $this->shape_parts = array_reverse($stack);
+        $this->shapeParts = array_reverse($stack);
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getStartStep()
+    {
+        return self::START_STEP;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getSmallSize()
+    {
+        return self::SMALL_SIZE;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getMediumSize()
+    {
+        return self::MEDIUM_SIZE;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getLargeSize()
+    {
+        return self::LARGE_SIZE;
     }
 }

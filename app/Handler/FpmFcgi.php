@@ -4,20 +4,19 @@ namespace AsciiShapes\Handler;
 
 /**
  * Class FpmFcgi
- *
  * @inheritdoc
- *
  * @package AsciiShapes\Handler
  */
-class FpmFcgi extends HandlerSapi
+class FpmFcgi extends ApplicationHandler
 {
-    public function apply()
+    /**
+     * Init passed setting and calling viewing function
+     */
+    public function init()
     {
-        $request = $this->getRequest();
+        $size   = $this->request->get(self::SIZE_ARGUMENT) ?: $this->getDefaultSize();
+        $amount = $this->request->get(self::AMOUNT_ARGUMENT) ?: $this->getDefaultAmount();
 
-        $size   = $request->get('size') ?: $this->getDefaultSize();
-        $amount = $request->get('amount') ?: $this->getDefaultAmount();
-
-        $this->display($size, $amount);
+        $this->view($size, $amount);
     }
 }

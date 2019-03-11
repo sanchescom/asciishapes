@@ -2,59 +2,125 @@
 
 namespace AsciiShapes\Shapes;
 
+/**
+ * Class Shape
+ * @package AsciiShapes\Shapes
+ */
 abstract class Shape
 {
-    protected $shape_parts;
-
+    /**
+     * @var string
+     */
     const SMALL_SIZE_NAME  = 'small';
+
+    /**
+     * @var string
+     */
     const MEDIUM_SIZE_NAME = 'medium';
+
+    /**
+     * @var string
+     */
     const LARGE_SIZE_NAME  = 'large';
 
-    protected static $start_step;
+    /**
+     * @var array
+     */
+    public $shapeParts;
 
-    protected static $small_size;
-    protected static $medium_size;
-    protected static $large_size;
+    /**
+     * @var int
+     */
+    public $size;
 
-    abstract public function build($size);
-    abstract protected static function getStep($size);
+    /**
+     * @var int
+     */
+    public $amount;
 
 
-    public function draw($amount): void
+    /**
+     * Shape constructor.
+     * @param $size
+     * @param $amount
+     */
+    public function __construct($size, $amount)
     {
-        foreach ($this->shape_parts as $item) {
-            for ($i=0; $i<$amount; $i++) {
-                echo $item;
-            }
-            echo PHP_EOL;
-        }
+        $this->size = $size;
+        $this->amount = $amount;
     }
 
-
-    protected static function getSize($name): int
+    /**
+     * @param $size
+     * @param $amount
+     * @return Shape
+     */
+    public static function create($size, $amount)
     {
-        return self::getSizes()[$name];
+        return new static($size, $amount);
     }
 
-
-    protected static function getPreviousSize($name): ?int
+    /**
+     * @return array
+     */
+    protected function getSizes(): array
     {
-        $key = array_search($name, array_keys(self::getSizes()));
+        return [
+            self::SMALL_SIZE_NAME  => static::getSmallSize(),
+            self::MEDIUM_SIZE_NAME => static::getMediumSize(),
+            self::LARGE_SIZE_NAME  => static::getLargeSize(),
+        ];
+    }
+
+    /**
+     * @return int
+     */
+    protected function getSize(): int
+    {
+        return self::getSizes()[$this->size];
+    }
+
+    /**
+     * @return int|null
+     */
+    protected function getPreviousSize(): ?int
+    {
+        $key = array_search($this->size, array_keys($this->getSizes()));
 
         if ($key) {
-            return array_values(self::getSizes())[$key - 1];
+            return array_values($this->getSizes())[$key - 1];
         }
 
         return null;
     }
 
+    /**
+     * @return int
+     */
+    abstract protected function getStep();
 
-    protected static function getSizes(): array
-    {
-        return [
-            self::SMALL_SIZE_NAME  => static::$small_size,
-            self::MEDIUM_SIZE_NAME => static::$medium_size,
-            self::LARGE_SIZE_NAME  => static::$large_size,
-        ];
-    }
+    /**
+     * @return int
+     */
+    abstract protected function getStartStep();
+
+    /**
+     * @return int
+     */
+    abstract protected function getSmallSize();
+
+    /**
+     * @return int
+     */
+    abstract protected function getMediumSize();
+
+    /**
+     * @return int
+     */
+    abstract protected function getLargeSize();
+
+    /**
+     * @return Shape
+     */
+    abstract public function build();
 }
